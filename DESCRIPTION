@@ -4,7 +4,7 @@ Title: AI-Powered R Coding Assistant with Ollama
 Version: 1.0.0
 Date: 2026-02-19
 Author: Gideon Alake
-Maintainer: Gideon Alake
+Maintainer: Gideon Alake <polcollino@gmail.com>
 Description: An AI-powered coding assistant for R with Ollama as the default backend.
              Features syntax highlighting, auto-completion, code templates, and educational support.
              Local-first privacy with optional cloud providers.
