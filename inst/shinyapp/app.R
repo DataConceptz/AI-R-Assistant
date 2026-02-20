@@ -4217,7 +4217,4 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
   )
 }
 
-# Only create shinyApp when sourced directly, not when loaded as a package
-if (!isNamespaceLoaded("aiRAssistant")) {
-  shinyApp(ui = ui, server = server)
-}
+shinyApp(ui = ui, server = server)
