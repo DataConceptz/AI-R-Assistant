@@ -1,0 +1,4 @@
+Name: AI R Assistant
+Description: Launch the AI-powered R coding assistant with Ollama support
+Binding: ai_r_assistant
+Interactive: true
