@@ -1,0 +1,30 @@
+# R session/user files
+.Rhistory
+.RData
+.Ruserdata
+
+# RStudio
+.Rproj.user/
+*.Rproj
+
+# Build/check artifacts
+*.Rcheck/
+*.tar.gz
+*.Rout
+*.Rout.save
+
+# Package/dependency environments
+renv/library/
+renv/python/
+renv/staging/
+packrat/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

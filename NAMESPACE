@@ -1,0 +1,27 @@
+# Generated manually for package exports
+
+export(ai_r_assistant)
+export(get_rstudio_selection)
+export(run_code_in_rstudio)
+export(insert_text_rstudio)
+
+# ── shiny ──
+import(shiny)
+
+# ── shinyAce ──
+importFrom(shinyAce, aceEditor, updateAceEditor)
+
+# ── memoise ──
+importFrom(memoise, memoise)
+
+# ── rintrojs ──
+importFrom(rintrojs, introjsUI, introjs)
+
+# ── grDevices ──
+importFrom(grDevices, dev.cur, dev.off, dev.set, pdf, png, svg, recordPlot, replayPlot)
+
+# ── graphics ──
+importFrom(graphics, plot.new, text)
+
+# ── utils ──
+importFrom(utils, capture.output)
