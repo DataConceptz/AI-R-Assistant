@@ -651,7 +651,7 @@ ui <- fluidPage(
             tags$h4("Install and Launch in RStudio"),
             tags$p("Install from local folder with devtools, then launch through add-in or package function."),
             tags$div(class = "help-code",
-"install.packages('devtools')\ndevtools::install_github('DataConceptz/AI-R-Assistant', upgrade = 'never')\naiRAssistant::ai_r_assistant()"),
+"install.packages('devtools')\ndevtools::install_github('DataConceptz/AI-R-Assistant')\naiRAssistant::ai_r_assistant()"),
             tags$p("In RStudio menus: Tools -> Addins -> Browse Addins -> AI R Assistant.")
           ),
           div(id = "help_section_models", class = "help-section",
@@ -734,9 +734,8 @@ ui <- fluidPage(
             tags$div(class = "help-code",
 "# Quick endpoint test\n
 httr::GET('http://localhost:11434/api/tags')\n
-# Launch app from source\n
-source('R/R_AI_Assistant.R')\n
-shiny::runApp(shiny::shinyApp(ui = ui, server = server))")
+# Launch app from source checkout\n
+shiny::runApp('inst/shinyapp')")
           ),
           div(id = "help_section_faq", class = "help-section",
             tags$h4("FAQ"),

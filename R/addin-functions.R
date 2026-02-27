@@ -25,26 +25,17 @@ ai_r_assistant <- function() {
     return(invisible(NULL))
   }
 
-  # ── 2. Dev / source-checkout fallback: source the R/ file directly ─────────
-  dev_candidates <- c("R/R_AI_Assistant.R", "R_AI_Assistant.R")
-  dev_candidates <- dev_candidates[file.exists(dev_candidates)]
-
-  if (length(dev_candidates) > 0) {
-    app_env <- new.env(parent = globalenv())
-    sys.source(dev_candidates[[1]], envir = app_env)
-    if (!exists("ui", envir = app_env, inherits = FALSE) ||
-        !exists("server", envir = app_env, inherits = FALSE))
-      stop("App file does not define 'ui' and 'server': ", dev_candidates[[1]])
-    shiny::runApp(
-      shiny::shinyApp(ui = app_env$ui, server = app_env$server),
-      host = "127.0.0.1", port = 5050, launch.browser = TRUE
-    )
+  # ── 2. Dev / source-checkout fallback: run from inst/shinyapp/ directly ─────
+  dev_app <- "inst/shinyapp"
+  if (dir.exists(dev_app) && file.exists(file.path(dev_app, "app.R"))) {
+    shiny::runApp(dev_app, host = "127.0.0.1", port = 5050,
+                  launch.browser = TRUE)
     return(invisible(NULL))
   }
 
   stop(
-    "Could not locate the app. Re-install with:\n",
-    "  devtools::install_local('", getwd(), "', force = TRUE)"
+    "Could not locate the app. Install with:\n",
+    "  devtools::install_github('DataConceptz/AI-R-Assistant')"
   )
 }
 

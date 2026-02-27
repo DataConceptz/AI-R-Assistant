@@ -1,8 +1,8 @@
 Package: aiRAssistant
 Type: Package
 Title: AI-Powered R Coding Assistant with Ollama
-Version: 1.0.0
-Date: 2026-02-19
+Version: 1.1.0
+Date: 2026-02-27
 Author: Gideon Alake
 Maintainer: Gideon Alake <polcollino@gmail.com>
 Description: An AI-powered coding assistant for R with Ollama as the default backend.

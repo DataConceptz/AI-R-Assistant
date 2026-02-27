@@ -4,8 +4,8 @@
 
 | Version | Supported |
 |---------|-----------|
-| 2.0.x   | Yes       |
-| < 2.0   | No        |
+| 1.1.x   | Yes       |
+| 1.0.x   | Yes       |
 
 ## Reporting a Vulnerability
 
@@ -34,6 +34,6 @@ When a fix is released, we will document it in `CHANGELOG.md`.
 ## Security Best Practices for Contributors
 
 - Never commit API keys or secrets.
-- Use `keyring` for credential storage.
+- Use `keyring` or the in-app Settings panel for credential storage.
 - Keep dependencies up to date.
 - Validate and sanitize external inputs where applicable.

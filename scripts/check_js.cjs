@@ -1,5 +1,5 @@
 const fs = require('fs');
-const src = fs.readFileSync('R/R_AI_Assistant.R', 'utf8');
+const src = fs.readFileSync('inst/shinyapp/app.R', 'utf8');
 
 // Find all tags$script(HTML("...")) blocks
 const re = /tags\$script\(HTML\("([\s\S]*?)"\)\)/g;

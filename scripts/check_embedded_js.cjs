@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const file = 'R/R_AI_Assistant.R';
+const file = 'inst/shinyapp/app.R';
 const src = fs.readFileSync(file, 'utf8');
 
 const startMarker = 'tags$script(HTML("';

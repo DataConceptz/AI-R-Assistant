@@ -23,6 +23,11 @@ packrat/
 *.log
 *.tmp
 
+# Generated plot files
+Rplots.pdf
+inst/shinyapp/Rplots.pdf
+inst/shinyapp/figure_*
+
 # OS/editor noise
 .DS_Store
 Thumbs.db

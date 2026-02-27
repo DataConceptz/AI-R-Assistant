@@ -1,6 +1,6 @@
-# Contributing to R-Assistant
+# Contributing to AI-R-Assistant
 
-Thank you for your interest in improving **R-Assistant**.
+Thank you for your interest in improving **AI-R-Assistant**.
 
 ## How to Contribute
 
@@ -22,24 +22,23 @@ Thank you for your interest in improving **R-Assistant**.
 
 ```r
 install.packages(c(
-  "shiny", "httr", "jsonlite", "shinyAce", "keyring", "memoise",
-  "shinyBS", "rintrojs", "rstudioapi", "digest", "ggplot2"
+  "shiny", "httr", "jsonlite", "shinyAce", "keyring",
+  "memoise", "rintrojs", "rstudioapi", "ggplot2"
 ))
 ```
 
 3. From the project root, run the app from source:
 
 ```r
-source("R_AI_Assistant.R")
-shiny::runApp(shiny::shinyApp(ui = ui, server = server))
+shiny::runApp("inst/shinyapp")
 ```
 
 ## Validation Checklist
 
 Before submitting a PR, verify:
 
-- [ ] `R_AI_Assistant.R` parses successfully
-- [ ] Add-in entrypoint still works (`ai_r_assistant()`)
+- [ ] `inst/shinyapp/app.R` parses successfully
+- [ ] Add-in entrypoint still works (`aiRAssistant::ai_r_assistant()`)
 - [ ] New UI/server behavior is manually tested
 - [ ] README and docs are updated if behavior changed
 
