@@ -165,25 +165,38 @@ ui <- fluidPage(
     .panel-body { flex: 1 1 auto; min-height: 0; padding: 12px; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
     .editor-body { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
     .editor-top-area { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
-    .editor-tabs { display: flex; gap: 8px; padding: 8px 12px 0; flex: 0 0 auto; }
-    .editor-tab { padding: 6px 12px; cursor: pointer; font-size: 12px; color: #d0d7e2; border: 1px solid #2a2a3e; border-radius: 6px; background: rgba(0, 212, 255, 0.05); transition: all 0.2s; }
+    .editor-tabs { display: flex; gap: 6px; padding: 8px 12px 0; flex: 0 0 auto; align-items: center; flex-wrap: nowrap; }
+    .editor-tab { padding: 6px 12px; cursor: pointer; font-size: 12px; color: #d0d7e2; border: 1px solid #2a2a3e; border-radius: 6px; background: rgba(0, 212, 255, 0.05); transition: all 0.2s; height: 31px; line-height: 18px; box-sizing: border-box; display: inline-flex; align-items: center; }
     .editor-tab:hover { color: #00d4ff; border-color: #00d4ff; }
     .editor-tab.active { color: #00ffaa; border-color: #00ffaa; background: rgba(0, 255, 170, 0.12); }
+    .plot-tools-inline { display: none; margin-left: auto; gap: 8px; align-items: center; flex-wrap: nowrap; }
+    .plot-tools-inline.visible { display: flex; }
+    .plot-tools-inline .quick-btn { height: 31px !important; min-height: 31px !important; max-height: 31px !important; padding: 0 10px !important; font-size: 11px !important; line-height: 29px !important; box-sizing: border-box !important; display: inline-flex !important; align-items: center !important; }
+    .plot-tools-inline .form-group { margin-bottom: 0 !important; margin-top: 0 !important; }
+    .plot-tools-inline .checkbox { margin: 0 !important; padding: 0 !important; }
+    .plot-tools-inline .checkbox label { color: #d0d7e2; font-size: 11px; height: 31px; display: inline-flex; align-items: center; margin: 0; padding: 0 4px; }
+    .plot-tools-inline .selectize-control { margin-bottom: 0; }
+    .plot-tools-inline .selectize-input { background: rgba(0, 212, 255, 0.15) !important; border: 1px solid #00d4ff !important; color: #00d4ff !important; font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace; height: 31px !important; min-height: 31px !important; max-height: 31px !important; padding: 5px 8px !important; border-radius: 6px !important; box-shadow: none !important; line-height: 20px !important; }
+    .plot-tools-inline .selectize-input .item { color: #00d4ff !important; }
+    .plot-tools-inline .selectize-dropdown { background: #1a1a2e !important; border: 1px solid #00d4ff !important; border-radius: 6px !important; z-index: 10001 !important; }
+    .plot-tools-inline .selectize-dropdown .option { color: #e0e0e0; padding: 6px 10px; font-size: 11px; }
+    .plot-tools-inline .selectize-dropdown .option:hover { background: rgba(0, 212, 255, 0.2) !important; color: #00d4ff !important; }
+    .plot-tools-inline .toolbar-dropdown .dropdown-menu { z-index: 10001; }
     .editor-tab-content { flex: 1 1 0; min-height: 0; padding: 8px 12px 10px; display: flex; overflow: hidden; }
     .editor-tab-pane { display: none; flex: 1 1 0; min-height: 0; width: 100%; overflow: hidden; }
     .editor-tab-pane.active { display: flex; flex-direction: column; gap: 8px; flex: 1 1 0; min-height: 0; overflow: hidden; }
-    .editor-ace-wrap { flex: 1 1 0; min-height: 0; border: 1px solid #2a2a3e; border-radius: 8px; overflow: hidden; }
-    .editor-ace-wrap .shiny-input-container { height: 100% !important; display: block !important; }
-    .editor-ace-wrap .ace_editor { height: 100% !important; }
-    .plot-pane { flex: 1 1 auto; min-height: 0; background: #0a0a14; border: 1px solid #2a2a3e; border-radius: 8px; padding: 10px; display: flex; flex-direction: column; }
+    .editor-ace-wrap { flex: 1 1 0; min-height: 0; border: 1px solid #2a2a3e; border-radius: 8px; overflow: hidden; position: relative; }
+    .editor-ace-wrap .shiny-input-container { height: 100% !important; width: 100% !important; display: block !important; position: absolute !important; top: 0; left: 0; right: 0; bottom: 0; margin: 0 !important; padding: 0 !important; }
+    .editor-ace-wrap .ace_editor { height: 100% !important; width: 100% !important; }
+    .plot-pane { flex: 1 1 auto; min-height: 0; background: #0a0a14; border: 1px solid #2a2a3e; border-radius: 8px; padding: 10px; display: flex; flex-direction: column; overflow: hidden; }
     .plot-pane .plot-toolbar { flex: 0 0 auto; }
-    .plot-pane .plot-canvas { flex: 1 1 auto; min-height: 0; }
-    .plot-pane .plot-canvas .shiny-plot-output { height: 100% !important; width: 100% !important; }
+    .plot-pane .plot-canvas { flex: 1 1 auto; min-height: 0; position: relative; overflow: hidden; }
+    .plot-pane .plot-canvas .shiny-plot-output { position: absolute !important; top: 0; left: 0; right: 0; bottom: 0; width: 100% !important; height: 100% !important; }
     .plot-pane .plot-canvas .shiny-plot-output img { width: 100% !important; height: 100% !important; object-fit: contain; }
     /* Prevent Shiny's grey-out overlay during plot recalculation */
     .plot-pane .shiny-plot-output.recalculating { opacity: 1 !important; }
     .plot-pane .plotly.recalculating { opacity: 1 !important; }
-    .plot-pane .plot-canvas .plotly, .plot-pane .plot-canvas .html-widget { height: 100% !important; width: 100% !important; }
+    .plot-pane .plot-canvas .plotly, .plot-pane .plot-canvas .html-widget { position: absolute !important; top: 0; left: 0; right: 0; bottom: 0; width: 100% !important; height: 100% !important; }
     /* Data tab DT dark theme */
     #data_tab .dataTables_wrapper { color: #e0e0e0 !important; }
     #data_tab table.dataTable { background: #1a1a2e !important; color: #e0e0e0 !important; border-color: #2a2a3e !important; }
@@ -238,6 +251,9 @@ ui <- fluidPage(
     .toolbar-dropdown:hover .dropdown-menu, .toolbar-dropdown:focus-within .dropdown-menu { display: block; }
     .toolbar-dropdown .dropdown-menu .dd-item { display: block; width: 100%; padding: 6px 12px; background: none; border: none; color: #e0e0e0; font-size: 11px; font-family: 'JetBrains Mono', monospace; text-align: left; cursor: pointer; transition: background 0.15s; box-shadow: none; border-radius: 0; }
     .toolbar-dropdown .dropdown-menu .dd-item:hover, .toolbar-dropdown .dropdown-menu .dd-item:focus { background: rgba(0, 212, 255, 0.2); color: #00d4ff; outline: none; box-shadow: none; }
+    .toolbar-dropdown .dropdown-menu a.dd-item { display: block; width: 100%; padding: 6px 12px; background: none; border: none; color: #e0e0e0; font-size: 11px; font-family: 'JetBrains Mono', monospace; text-align: left; cursor: pointer; transition: background 0.15s; box-shadow: none; border-radius: 0; text-decoration: none; }
+    .toolbar-dropdown .dropdown-menu a.dd-item .fa, .toolbar-dropdown .dropdown-menu a.dd-item .glyphicon { display: none; }
+    .toolbar-dropdown .dropdown-menu a.dd-item:hover, .toolbar-dropdown .dropdown-menu a.dd-item:focus { background: rgba(0, 212, 255, 0.2); color: #00d4ff; outline: none; box-shadow: none; text-decoration: none; }
     .console-section { background: #0a0a14; display: flex; flex-direction: column; flex: 0 0 150px; min-height: 36px; }
     .console-section.collapsed { flex: 0 0 36px !important; min-height: 36px; max-height: 36px; }
     .console-section.collapsed .console-output { display: none; }
@@ -315,9 +331,7 @@ ui <- fluidPage(
     .output-content { padding: 12px 15px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #00ffaa; min-height: 260px; max-height: 480px; overflow-y: auto; }
     .plot-output { background: #fff; border-radius: 6px; margin: 8px; min-height: 360px; }
     .ace_editor { font-size: 14px !important; }
-    .editor-ace-wrap .shiny-input-container { height: 100% !important; display: block !important; }
-    .editor-ace-wrap .ace_editor { height: 100% !important; }
-    #code_editor { height: 100% !important; }
+    #code_editor { height: 100% !important; width: 100% !important; }
     ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0f0f1e; } ::-webkit-scrollbar-thumb { background: #00d4ff; border-radius: 3px; } ::-webkit-scrollbar-thumb:hover { background: #00a8cc; }
     .keyboard-hint { font-size: 10px; color: #c2cad6; margin-top: 5px; }
 
@@ -816,7 +830,56 @@ shiny::runApp('inst/shinyapp')")
             div(class = "editor-tabs",
               div(id = "tab_editor", class = "editor-tab active", onclick = "setEditorTabClient('editor')", "Editor"),
               div(id = "tab_plot", class = "editor-tab", onclick = "setEditorTabClient('plot')", "Plot"),
-              div(id = "tab_data", class = "editor-tab", onclick = "setEditorTabClient('data')", "Data")
+              div(id = "tab_data", class = "editor-tab", onclick = "setEditorTabClient('data')", "Data"),
+              div(id = "plot_tools_inline", class = "plot-tools-inline",
+                tags$div(class = "toolbar-dropdown",
+                  actionButton("theme_toggle", "\U0001F3A8 Theme", class = "quick-btn"),
+                  tags$div(class = "dropdown-menu",
+                    actionButton("theme_minimal", "Minimal", class = "dd-item"),
+                    actionButton("theme_classic", "Classic", class = "dd-item"),
+                    actionButton("theme_bw", "B&W", class = "dd-item"),
+                    actionButton("theme_dark", "Dark", class = "dd-item"),
+                    actionButton("theme_light", "Light", class = "dd-item"),
+                    actionButton("theme_void", "Void", class = "dd-item"),
+                    actionButton("theme_linedraw", "Linedraw", class = "dd-item"),
+                    actionButton("theme_grey", "Grey", class = "dd-item"),
+                    actionButton("theme_economist", "Economist", class = "dd-item"),
+                    actionButton("theme_tufte", "Tufte", class = "dd-item"),
+                    actionButton("theme_clean", "Clean", class = "dd-item")
+                  )
+                ),
+                tags$div(class = "toolbar-dropdown",
+                  actionButton("color_toggle", "\U0001F308 Colors", class = "quick-btn"),
+                  tags$div(class = "dropdown-menu",
+                    actionButton("pal_viridis", "Viridis", class = "dd-item"),
+                    actionButton("pal_plasma", "Plasma", class = "dd-item"),
+                    actionButton("pal_inferno", "Inferno", class = "dd-item"),
+                    actionButton("pal_magma", "Magma", class = "dd-item"),
+                    actionButton("pal_cividis", "Cividis", class = "dd-item"),
+                    actionButton("pal_Set1", "Set1", class = "dd-item"),
+                    actionButton("pal_Set2", "Set2", class = "dd-item"),
+                    actionButton("pal_Paired", "Paired", class = "dd-item"),
+                    actionButton("pal_Dark2", "Dark2", class = "dd-item"),
+                    actionButton("pal_Spectral", "Spectral", class = "dd-item"),
+                    actionButton("pal_Corporate", "Corporate", class = "dd-item"),
+                    actionButton("pal_Ocean", "Ocean", class = "dd-item"),
+                    actionButton("pal_Sunset", "Sunset", class = "dd-item"),
+                    actionButton("pal_Forest", "Forest", class = "dd-item"),
+                    actionButton("pal_Slate", "Slate", class = "dd-item")
+                  )
+                ),
+                tags$div(class = "toolbar-dropdown",
+                  actionButton("save_toggle", "\U0001F4BE Save", class = "quick-btn"),
+                  tags$div(class = "dropdown-menu",
+                    downloadButton("save_plot_png", "PNG (300 DPI)", class = "dd-item"),
+                    downloadButton("save_plot_pdf", "PDF", class = "dd-item"),
+                    downloadButton("save_plot_svg", "SVG", class = "dd-item"),
+                    downloadButton("save_plot_tiff", "TIFF (300 DPI)", class = "dd-item"),
+                    downloadButton("save_plot_jpeg", "JPEG (300 DPI)", class = "dd-item")
+                  )
+                ),
+                actionButton("popout_plot", "Popout", class = "quick-btn")
+              )
             ),
           div(class = "editor-tab-content",
             div(id = "editor_tab", class = "editor-tab-pane active",
@@ -851,64 +914,38 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
               # Quick Action Buttons
               div(class = "quick-actions",
                 actionButton("run_btn", "Run", class = "quick-btn quick-btn-success"),
-                actionButton("run_sel_btn", "Run Selection", class = "quick-btn", onclick = "runSelection();"),
+                actionButton("run_sel_btn", "Run Selection", class = "quick-btn", onclick = "
+                  var sel = '';
+                  try {
+                    var el = document.getElementById('code_editor');
+                    if (el) {
+                      var editor = ace.edit(el);
+                      sel = editor.getSelectedText() || '';
+                      if (!sel.trim()) {
+                        sel = window._lastAceSelection || '';
+                      }
+                      if (!sel.trim()) {
+                        var row = editor.getCursorPosition().row;
+                        sel = editor.session.getLine(row) || '';
+                      }
+                    }
+                  } catch(e) { console.error('selection error:', e); }
+                  Shiny.setInputValue('run_sel_btn_click', {selection: sel, nonce: Math.random()}, {priority: 'event'});
+                  return false;
+                "),
                 actionButton("explain_btn", "Explain", class = "quick-btn"),
                 actionButton("debug_btn", "Debug", class = "quick-btn"),
                 actionButton("optimize_btn", "Optimize", class = "quick-btn"),
                 actionButton("format_btn", "Format Code", class = "quick-btn"),
                 actionButton("document_btn", "Document", class = "quick-btn"),
                 actionButton("chart_help_btn", "Chart Help", class = "quick-btn quick-btn-warning"),
-                actionButton("paste_btn", "New File", class = "quick-btn")
+                actionButton("paste_btn", "New File", class = "quick-btn"),
+                actionButton("clear_editor_btn", "Clear", class = "quick-btn", title = "Clear editor and start fresh")
               ),
               div(class = "keyboard-hint", "Ctrl+Enter: Run | Tab: Autocomplete")
             ),
             div(id = "plot_tab", class = "editor-tab-pane",
               div(class = "plot-pane",
-                div(class = "plot-toolbar",
-                  tags$div(class = "toolbar-dropdown",
-                    actionButton("theme_toggle", "\U0001F3A8 Theme", class = "quick-btn"),
-                    tags$div(class = "dropdown-menu",
-                      actionButton("theme_minimal", "Minimal", class = "dd-item"),
-                      actionButton("theme_classic", "Classic", class = "dd-item"),
-                      actionButton("theme_bw", "B&W", class = "dd-item"),
-                      actionButton("theme_dark", "Dark", class = "dd-item"),
-                      actionButton("theme_light", "Light", class = "dd-item"),
-                      actionButton("theme_void", "Void", class = "dd-item"),
-                      actionButton("theme_linedraw", "Linedraw", class = "dd-item"),
-                      actionButton("theme_grey", "Grey", class = "dd-item"),
-                      actionButton("theme_economist", "Economist", class = "dd-item"),
-                      actionButton("theme_tufte", "Tufte", class = "dd-item"),
-                      actionButton("theme_clean", "Clean", class = "dd-item")
-                    )
-                  ),
-                  tags$div(class = "toolbar-dropdown",
-                    actionButton("color_toggle", "\U0001F308 Colors", class = "quick-btn"),
-                    tags$div(class = "dropdown-menu",
-                      actionButton("pal_viridis", "Viridis", class = "dd-item"),
-                      actionButton("pal_plasma", "Plasma", class = "dd-item"),
-                      actionButton("pal_inferno", "Inferno", class = "dd-item"),
-                      actionButton("pal_magma", "Magma", class = "dd-item"),
-                      actionButton("pal_cividis", "Cividis", class = "dd-item"),
-                      actionButton("pal_Set1", "Set1", class = "dd-item"),
-                      actionButton("pal_Set2", "Set2", class = "dd-item"),
-                      actionButton("pal_Paired", "Paired", class = "dd-item"),
-                      actionButton("pal_Dark2", "Dark2", class = "dd-item"),
-                      actionButton("pal_Spectral", "Spectral", class = "dd-item"),
-                      actionButton("pal_Corporate", "Corporate", class = "dd-item"),
-                      actionButton("pal_Ocean", "Ocean", class = "dd-item"),
-                      actionButton("pal_Sunset", "Sunset", class = "dd-item"),
-                      actionButton("pal_Forest", "Forest", class = "dd-item"),
-                      actionButton("pal_Slate", "Slate", class = "dd-item")
-                    )
-                  ),
-                  checkboxInput("auto_plot", "Auto Plot", value = TRUE),
-                  tags$div(class = "plot-toolbar-right",
-                    actionButton("toggle_plotly", "Interactive", class = "quick-btn", title = "Toggle static/interactive plot"),
-                    selectInput("export_format", NULL, choices = c("PNG (300 DPI)" = "png", "PDF" = "pdf", "SVG" = "svg"), selected = "png", width = "120px"),
-                    downloadButton("save_plot", "Save", class = "quick-btn"),
-                    actionButton("popout_plot", "Popout", class = "quick-btn")
-                  )
-                ),
                 div(class = "plot-canvas",
                   plotOutput("plot_display", height = "100%"),
                   if (requireNamespace("plotly", quietly = TRUE)) {
@@ -1062,6 +1099,9 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
       if (ep) { if (tab === 'editor') ep.classList.add('active'); else ep.classList.remove('active'); }
       if (pp) { if (tab === 'plot') pp.classList.add('active'); else pp.classList.remove('active'); }
       if (dp) { if (tab === 'data') dp.classList.add('active'); else dp.classList.remove('active'); }
+      // Show/hide plot tools in tab bar
+      var plotTools = document.getElementById('plot_tools_inline');
+      if (plotTools) plotTools.classList.toggle('visible', tab === 'plot');
       try { Shiny.setInputValue('editor_tab', tab, {priority: 'event'}); } catch(x){}
     }
     function _doChatTab(tab) {
@@ -1089,6 +1129,8 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
       }
       // Resize editor after toggle
       try { ace.edit('code_editor').resize(); } catch(x) {}
+      // Trigger plot resize when console is toggled
+      debouncedPlotResize(200);
     }
     // Expose global stubs so inline onclick= attributes don't throw
     // (main script block redefines these with full implementations)
@@ -1190,6 +1232,8 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
         document.body.style.userSelect = '';
         document.body.style.cursor = '';
         try { ace.edit('code_editor').resize(); } catch(x) {}
+        // Trigger plot resize after console splitter drag
+        debouncedPlotResize(200);
         consoleEl = null;
       });
     })();
@@ -1258,21 +1302,37 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
       var lastWidth = 0;
       var lastHeight = 0;
       var observer = new ResizeObserver(function(entries) {
-        // Only trigger if size actually changed significantly (>10px)
-        var entry = entries[0];
-        if (!entry) return;
-        var newWidth = entry.contentRect.width;
-        var newHeight = entry.contentRect.height;
-        if (Math.abs(newWidth - lastWidth) < 10 && Math.abs(newHeight - lastHeight) < 10) return;
-        lastWidth = newWidth;
-        lastHeight = newHeight;
-        debouncedPlotResize(600);
+        // Only trigger if size actually changed significantly (>5px)
+        for (var i = 0; i < entries.length; i++) {
+          var entry = entries[i];
+          if (!entry) continue;
+          var newWidth = entry.contentRect.width;
+          var newHeight = entry.contentRect.height;
+          if (Math.abs(newWidth - lastWidth) > 5 || Math.abs(newHeight - lastHeight) > 5) {
+            lastWidth = newWidth;
+            lastHeight = newHeight;
+            debouncedPlotResize(300);
+            // Also resize Plotly if visible
+            try {
+              var pl = document.getElementById('plotly_display');
+              if (pl && pl.style.display !== 'none' && window.Plotly) {
+                setTimeout(function() { Plotly.Plots.resize(pl); }, 350);
+              }
+            } catch(e) {}
+            break;
+          }
+        }
       });
       window.addEventListener('load', function() {
         var plotPane = document.querySelector('.plot-pane');
         if (plotPane) observer.observe(plotPane);
         var plotCanvas = document.querySelector('.plot-canvas');
         if (plotCanvas) observer.observe(plotCanvas);
+        // Also observe the editor-top-area — it resizes when console is toggled or splitter moved
+        var editorTop = document.querySelector('.editor-top-area');
+        if (editorTop) observer.observe(editorTop);
+        var editorPanel = document.querySelector('.editor-panel');
+        if (editorPanel) observer.observe(editorPanel);
       });
     })(); } catch(_e) { console.warn('initPlotResizeObserver:', _e); }
 
@@ -1287,6 +1347,9 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
       if (editorPane) editorPane.classList.toggle('active', tab === 'editor');
       if (plotPane) plotPane.classList.toggle('active', tab === 'plot');
       if (dataPane) dataPane.classList.toggle('active', tab === 'data');
+      // Show/hide plot tools in tab bar
+      var plotTools = document.getElementById('plot_tools_inline');
+      if (plotTools) plotTools.classList.toggle('visible', tab === 'plot');
       try { Shiny.setInputValue('editor_tab', tab, {priority: 'event'}); } catch (e) {}
 
       if (tab === 'editor') {
@@ -1458,7 +1521,12 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
       window._appObservers.push(observer);
     }
 
-    function runSelection() {
+    // Cached selection: updated live by changeSelection listener so it
+    // survives the focus-loss that happens when a toolbar button is clicked.
+    window._lastAceSelection = '';
+
+    // Override the global stub with the real implementation
+    window.runSelection = function() {
       try {
         // Check if fallback textarea is being used
         var textareaEl = document.getElementById('code_editor_fallback');
@@ -1467,18 +1535,29 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
           var end = textareaEl.selectionEnd;
           var selection = textareaEl.value.substring(start, end);
           if (selection && selection.trim().length > 0) {
-            Shiny.setInputValue('run_selection', selection, {priority: 'event'});
+            Shiny.setInputValue('run_selection', {code: selection, nonce: Math.random()}, {priority: 'event'});
           }
           return;
         }
-        
-        var editor = ace.edit('code_editor');
+
+        var el = document.getElementById('code_editor');
+        if (!el) return;
+        var editor = ace.edit(el);
         var selection = editor.getSelectedText();
-        if (selection && selection.trim().length > 0) {
-          Shiny.setInputValue('run_selection', selection, {priority: 'event'});
+        // Fallback 1: cached selection (survives button-click focus loss)
+        if (!selection || selection.trim().length === 0) {
+          selection = window._lastAceSelection || '';
         }
-      } catch (e) {}
-    }
+        // Fallback 2: current line (like RStudio)
+        if (!selection || selection.trim().length === 0) {
+          var row = editor.getCursorPosition().row;
+          selection = editor.session.getLine(row);
+        }
+        if (selection && selection.trim().length > 0) {
+          Shiny.setInputValue('run_selection', {code: selection, nonce: Math.random()}, {priority: 'event'});
+        }
+      } catch (e) { console.error('runSelection error:', e); }
+    };
 
     function switchChatTab(tab) {
       var tabs = ['chat', 'code', 'diff'];
@@ -1595,6 +1674,31 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
       try { initConsoleSplitter(); } catch(e) {}
       try { initHotkeys(); } catch(e) {}
       try { initEditorStorage(); } catch(e) {}
+      // Force ace editor to fill container after layout settles
+      setTimeout(function() {
+        try {
+          var el = document.getElementById('code_editor');
+          if (el) {
+            var ed = ace.edit(el);
+            ed.resize(true);
+            // Track selection changes continuously so Run Selection always has the latest
+            // Only update when non-empty — clicking a button blurs ace which clears selection
+            ed.selection.on('changeSelection', function() {
+              var sel = ed.getSelectedText() || '';
+              if (sel.trim().length > 0) {
+                window._lastAceSelection = sel;
+                Shiny.setInputValue('_ace_selection', sel);
+              }
+            });
+            // Also track cursor position for run-current-line fallback
+            ed.selection.on('changeCursor', function() {
+              var row = ed.getCursorPosition().row;
+              var line = ed.session.getLine(row) || '';
+              Shiny.setInputValue('_ace_cursor_line', line);
+            });
+          }
+        } catch(e) {}
+      }, 200);
     }
     window.addEventListener('load', _bootUi);
     window.addEventListener('DOMContentLoaded', function() { setTimeout(_bootUi, 0); });
@@ -1884,6 +1988,7 @@ ggplot(data, aes(x = category, y = value, fill = category)) +
         }
       } catch (ex) {}
     });
+
   "))
 )
 
@@ -1915,6 +2020,11 @@ server <- function(input, output, session) {
   auto_fix_pending <- reactiveVal(FALSE)  # guard to prevent infinite auto-fix loops
   pre_ai_code <- reactiveVal("")   # snapshot of editor code before AI call (for diff view)
   uploaded_data <- reactiveVal(NULL)  # uploaded dataset for Data tab
+
+  # Persistent workspace environment for user code execution
+
+  # Variables created in one run persist to subsequent runs (like a real R console)
+  user_workspace <- new.env(parent = globalenv())
   last_api_ms <- reactiveVal(NA_real_)
   last_api_provider <- reactiveVal("")
   active_template <- reactiveVal("")
@@ -1960,18 +2070,61 @@ server <- function(input, output, session) {
         showNotification(paste("Unsupported format:", ext), type = "error")
         return()
       }
+      # Fix column names: remove empty names and make syntactically valid
+      nms <- names(df)
+      if (!is.null(nms)) {
+        nms[is.na(nms) | nms == ""] <- paste0("V", which(is.na(nms) | nms == ""))
+        names(df) <- make.names(nms, unique = TRUE)
+      }
+
       uploaded_data(df)
-      # Make data available in user code via globalenv
+      # Make data available in user code via globalenv AND user_workspace
       assign("uploaded_data", df, envir = globalenv())
+      assign("uploaded_data", df, envir = user_workspace)
+
+      # Copy uploaded file to a persistent working directory so load code works
+      data_dir <- file.path(tools::R_user_dir("aiRAssistant", "data"), "uploads")
+      if (!dir.exists(data_dir)) dir.create(data_dir, recursive = TRUE)
+      dest_path <- file.path(data_dir, file$name)
+      file.copy(file$datapath, dest_path, overwrite = TRUE)
+      # Set working directory to the uploads folder
+      setwd(data_dir)
+
       add_audit("data_upload", paste(file$name, nrow(df), "rows", ncol(df), "cols"))
-      showNotification(paste0("Loaded '", file$name, "': ", nrow(df), " rows x ", ncol(df), " cols"), type = "message", duration = 5)
-      # Auto-generate starter code
+      showNotification(paste0("Loaded '", file$name, "': ", nrow(df), " rows x ", ncol(df), " cols",
+                              " | Working dir: ", data_dir), type = "message", duration = 5)
+
+      # Build reproducible load code
+      load_cmd <- if (ext == "csv") {
+        paste0('uploaded_data <- read.csv("', file$name, '", stringsAsFactors = FALSE)')
+      } else if (ext == "tsv") {
+        paste0('uploaded_data <- read.delim("', file$name, '", stringsAsFactors = FALSE)')
+      } else if (ext %in% c("xlsx", "xls")) {
+        paste0('uploaded_data <- readxl::read_excel("', file$name, '")')
+      } else if (ext == "rds") {
+        paste0('uploaded_data <- readRDS("', file$name, '")')
+      } else {
+        paste0('# uploaded_data loaded from: ', file$name)
+      }
+
+      # Use gsub to get forward slashes for cleaner R code
+      data_dir_clean <- gsub("\\\\", "/", data_dir)
+
       starter <- paste0(
-        "# Data loaded from: ", file$name, "\n",
-        "# Access via: uploaded_data\n",
+        "# ── Data Upload: ", file$name, " ──\n",
+        "# ", nrow(df), " rows x ", ncol(df), " cols\n",
+        "# Columns: ", paste(names(df), collapse = ", "), "\n\n",
+        '# Set working directory to data folder\n',
+        'setwd("', data_dir_clean, '")\n\n',
+        "# Load the data\n",
+        load_cmd, "\n\n",
         "library(ggplot2)\n\n",
+        "# Explore the data\n",
         "str(uploaded_data)\n",
-        "head(uploaded_data)\n"
+        "head(uploaded_data)\n",
+        "summary(uploaded_data)\n\n",
+        "# Quick plot (modify as needed)\n",
+        "# ggplot(uploaded_data, aes(x = ", names(df)[1], ")) + geom_bar()\n"
       )
       shinyAce::updateAceEditor(session, "code_editor", value = starter)
       session$sendCustomMessage("setEditorValue", list(value = starter))
@@ -3238,7 +3391,7 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
       missing_optional <- optional_pkgs[!vapply(optional_pkgs, requireNamespace, logical(1), quietly = TRUE)]
       if (length(missing_optional) > 0) {
         showNotification(paste("Optional packages for enhanced charts:", paste(missing_optional, collapse = ", "),
-                              ". Some chart features may be limited."), type = "info", duration = 8)
+                              ". Some chart features may be limited."), type = "message", duration = 8)
       }
 
       # Guard: block auto-plot observers from re-executing while we load+render
@@ -3470,12 +3623,39 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
   }
 
   # System prompt shared by all providers
-  ai_system_prompt <- paste0(
+  ai_system_prompt_base <- paste0(
     "You are an expert R programming and data visualization assistant. Help with R coding, ",
     "debugging, explanations, and especially creating advanced charts with ggplot2, plotly, and other packages.\n",
     "Provide clear, helpful responses with complete R code examples. For chart questions, include ",
     "full working code with proper theming and aesthetics. Always wrap code in ```r code blocks."
   )
+
+  # Build dynamic system prompt that includes uploaded data context
+  get_ai_system_prompt <- function() {
+    prompt <- ai_system_prompt_base
+    df <- uploaded_data()
+    if (!is.null(df) && is.data.frame(df)) {
+      col_info <- vapply(names(df), function(nm) {
+        cl <- class(df[[nm]])[1]
+        paste0("  ", nm, " (", cl, ")")
+      }, character(1))
+      # Include sample values for first few columns
+      sample_lines <- utils::capture.output(utils::str(df, max.level = 1, give.attr = FALSE, list.len = 20))
+      data_context <- paste0(
+        "\n\nIMPORTANT: The user has uploaded a dataset available as `uploaded_data` (",
+        nrow(df), " rows x ", ncol(df), " cols).\n",
+        "Columns:\n", paste(col_info, collapse = "\n"), "\n\n",
+        "Structure:\n", paste(sample_lines, collapse = "\n"), "\n\n",
+        "Always use `uploaded_data` as the data variable name when writing code for this dataset. ",
+        "Do NOT create sample/fake data — use the actual uploaded data."
+      )
+      prompt <- paste0(prompt, data_context)
+    }
+    prompt
+  }
+
+  # Keep backward-compatible reference for places that read the static prompt
+  ai_system_prompt <- ai_system_prompt_base
 
   # Build multi-turn conversation messages from chat history
   build_conversation_messages <- function(code_context, n_turns = 10) {
@@ -3507,7 +3687,7 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
 
   call_openai_api <- function(user_message, code_context, model, api_key, max_tokens = 3000, conversation = NULL, base_url = NULL) {
     url <- base_url %||% "https://api.openai.com/v1/chat/completions"
-    api_messages <- list(list(role = "system", content = ai_system_prompt))
+    api_messages <- list(list(role = "system", content = get_ai_system_prompt()))
     if (!is.null(conversation) && length(conversation) > 0) {
       api_messages <- c(api_messages, conversation)
     }
@@ -3544,7 +3724,7 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
     body <- list(
       model = model,
       max_tokens = max_tokens,
-      system = ai_system_prompt,
+      system = get_ai_system_prompt(),
       messages = api_messages
     )
     resp <- httr::POST(
@@ -3574,7 +3754,7 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
     # Build conversation for Gemini (uses contents array with role: user/model)
     contents <- list()
     # Add system instruction as first user message
-    contents[[1]] <- list(role = "user", parts = list(list(text = ai_system_prompt)))
+    contents[[1]] <- list(role = "user", parts = list(list(text = get_ai_system_prompt())))
     contents[[2]] <- list(role = "model", parts = list(list(text = "I'm ready to help with R programming and data visualization.")))
     if (!is.null(conversation) && length(conversation) > 0) {
       for (m in conversation) {
@@ -3616,7 +3796,7 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
       return(paste0(translate("ollama_error"), " Missing Ollama URL."))
     }
 
-    api_messages <- list(list(role = "system", content = ai_system_prompt))
+    api_messages <- list(list(role = "system", content = get_ai_system_prompt()))
     if (!is.null(conversation) && length(conversation) > 0) {
       api_messages <- c(api_messages, conversation)
     }
@@ -3717,7 +3897,7 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
 
   stream_openai_chat <- function(prompt, model, api_key, on_delta, max_tokens = 3000, conversation = NULL, base_url = NULL) {
     url <- base_url %||% "https://api.openai.com/v1/chat/completions"
-    api_messages <- list(list(role = "system", content = ai_system_prompt))
+    api_messages <- list(list(role = "system", content = get_ai_system_prompt()))
     if (!is.null(conversation) && length(conversation) > 0) {
       api_messages <- c(api_messages, conversation)
     }
@@ -3764,7 +3944,7 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
       model = model,
       max_tokens = max_tokens,
       stream = TRUE,
-      system = ai_system_prompt,
+      system = get_ai_system_prompt(),
       messages = api_messages
     )
     acc <- ""
@@ -3800,7 +3980,7 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
     base_url <- normalize_ollama_url(base_url)
     if (!nzchar(base_url)) stop("Missing Ollama URL")
 
-    api_messages <- list(list(role = "system", content = ai_system_prompt))
+    api_messages <- list(list(role = "system", content = get_ai_system_prompt()))
     if (!is.null(conversation) && length(conversation) > 0) {
       api_messages <- c(api_messages, conversation)
     }
@@ -4340,11 +4520,10 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
     grepl("\\bplot\\(|\\bbarplot\\(|\\bhist\\(|\\bboxplot\\(|\\bpie\\(|\\bpairs\\(|\\bimage\\(|\\bcontour\\(|\\bheatmap\\(|\\bcurve\\(|\\bpar\\(|\\bmatplot\\(", code)
   }
 
-  # Helper: safe eval that inherits loaded packages via globalenv()
+  # Helper: safe eval using persistent workspace
   safe_eval_code <- function(code) {
     parsed <- parse(text = code)
-    env <- new.env(parent = globalenv())
-    eval(parsed, envir = env)
+    eval(parsed, envir = user_workspace)
   }
 
   # Run code - capture both output and plots with improved stability
@@ -4379,11 +4558,11 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
           dev_id <- dev.cur()
           pdf(NULL)  # open invisible PDF device to capture base plots
           on.exit({ dev.off(); if (dev_id > 1) dev.set(dev_id) }, add = TRUE)
-          eval(parsed_code, envir = new.env(parent = globalenv()))
+          eval(parsed_code, envir = user_workspace)
           result <- recordPlot()
         } else {
           # ggplot / plotly: evaluate all expressions, capture plot objects
-          eval_env <- new.env(parent = globalenv())
+          eval_env <- user_workspace
           exprs <- as.list(parsed_code)
           result <- NULL
           for (expr in exprs) {
@@ -4490,11 +4669,11 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
         dev_id <- dev.cur()
         pdf(NULL)
         on.exit({ dev.off(); if (dev_id > 1) dev.set(dev_id) }, add = TRUE)
-        eval(parsed_code, envir = new.env(parent = globalenv()))
+        eval(parsed_code, envir = user_workspace)
         recordPlot()
       } else {
         # Evaluate all expressions individually to capture plot objects
-        eval_env <- new.env(parent = globalenv())
+        eval_env <- user_workspace
         exprs <- as.list(parsed_code)
         last_result <- NULL
         for (expr in exprs) {
@@ -4544,9 +4723,36 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
     run_code(code)
   })
 
+  # Run Selection: triggered by button click or Ctrl+Shift+Enter via JS
+  # Value arrives as list(code = "...", nonce = <random>) so it always triggers
   observeEvent(input$run_selection, {
-    code <- sanitize_code(input$run_selection)
+    val <- input$run_selection
+    code_text <- if (is.list(val)) val$code else val
+    code <- sanitize_code(code_text)
     if (nzchar(code)) run_code(code)
+  })
+
+  # Run Selection button click: handle the button click and get selection
+  observeEvent(input$run_sel_btn_click, {
+    val <- input$run_sel_btn_click
+    sel <- if (is.list(val)) val$selection else ""
+    if (is.null(sel) || !nzchar(trimws(sel))) {
+      showNotification("No code selected. Highlight code in the editor first.", type = "warning", duration = 3)
+      return()
+    }
+    code <- sanitize_code(sel)
+    if (nzchar(code)) run_code(code)
+  })
+
+  # Clear editor: reset editor content, output, and workspace for a fresh start
+  observeEvent(input$clear_editor_btn, {
+    shinyAce::updateAceEditor(session, "code_editor", value = "")
+    output$code_output <- renderText("")
+    # Reset workspace but preserve uploaded_data if present
+    df <- if (exists("uploaded_data", envir = user_workspace)) get("uploaded_data", envir = user_workspace) else NULL
+    rm(list = ls(user_workspace), envir = user_workspace)
+    if (!is.null(df)) assign("uploaded_data", df, envir = user_workspace)
+    showNotification("Editor cleared. Ready for new code.", type = "message", duration = 2)
   })
 
   auto_plot_code <- reactive({
@@ -4557,11 +4763,10 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
   auto_plot_debounced <- debounce(auto_plot_code, 1500)
   observeEvent(auto_plot_debounced(), {
     if (isTRUE(isolate(template_loading()))) return()   # template handler already rendered
-    if (!isTRUE(isolate(input$auto_plot))) return()
     if (!identical(isolate(editor_tab_current()), "plot")) return()
     code_txt <- auto_plot_debounced()
     if (is.null(code_txt) || !nzchar(code_txt)) return()
-    if (nchar(code_txt) > 6000) { showNotification("Code too long for auto-plot preview. Use Run to render.", type = "info", duration = 3, id = "autoplot_skip"); return() }
+    if (nchar(code_txt) > 6000) { showNotification("Code too long for auto-plot preview. Use Run to render.", type = "message", duration = 3, id = "autoplot_skip"); return() }
     if (identical(code_txt, isolate(last_plot_code()))) return()
     if (!grepl("ggplot|plot\\(|geom_|plotly|barplot|hist\\(|boxplot", code_txt, ignore.case = TRUE)) return()
     update_plot_only(code_txt, quiet = TRUE)
@@ -4569,11 +4774,10 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
 
   observeEvent(editor_tab_current(), {
     if (isTRUE(template_loading())) return()             # template handler already rendered
-    if (!isTRUE(input$auto_plot)) return()
     if (!identical(editor_tab_current(), "plot")) return()
     code_txt <- sanitize_code(input$code_editor)
     if (is.null(code_txt) || !nzchar(code_txt)) return()
-    if (nchar(code_txt) > 6000) { showNotification("Code too long for auto-plot preview. Use Run to render.", type = "info", duration = 3, id = "autoplot_skip"); return() }
+    if (nchar(code_txt) > 6000) { showNotification("Code too long for auto-plot preview. Use Run to render.", type = "message", duration = 3, id = "autoplot_skip"); return() }
     if (identical(code_txt, last_plot_code())) return()
     if (!grepl("ggplot|plot\\(|geom_|plotly|barplot|hist\\(|boxplot", code_txt, ignore.case = TRUE)) return()
     update_plot_only(code_txt, quiet = TRUE)
@@ -4764,7 +4968,7 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
     # Try building the ggplot to validate scale/data compatibility
     try_build <- function(code_str) {
       tryCatch({
-        res <- eval(parse(text = code_str), envir = new.env(parent = globalenv()))
+        res <- eval(parse(text = code_str), envir = user_workspace)
         if (inherits(res, "ggplot")) ggplot2::ggplot_build(res)
         NULL
       }, error = function(e) e$message)
@@ -4813,47 +5017,67 @@ print(analyze_variable(mtcars, \"mpg\", \"cyl\"))"
   observeEvent(input$pal_Forest,    { apply_palette("Forest") },    ignoreInit = TRUE)
   observeEvent(input$pal_Slate,     { apply_palette("Slate") },     ignoreInit = TRUE)
 
-  output$save_plot <- downloadHandler(
-    filename = function() {
-      ts <- format(Sys.time(), "%Y%m%d_%H%M%S")
-      result <- current_plot()
-      # Determine format based on plot type
-      if (inherits(result, "plotly")) {
-        paste0("chart_", ts, ".html")
-      } else {
-        fmt <- input$export_format %||% "png"
-        paste0("chart_", ts, ".", fmt)
+  # ── Save plot helpers ──
+  make_save_handler <- function(fmt) {
+    downloadHandler(
+      filename = function() {
+        ts <- format(Sys.time(), "%Y%m%d_%H%M%S")
+        result <- current_plot()
+        if (inherits(result, "plotly")) {
+          paste0("chart_", ts, ".html")
+        } else {
+          paste0("chart_", ts, ".", fmt)
+        }
+      },
+      content = function(file) {
+        result <- current_plot()
+        if (inherits(result, "plotly") && requireNamespace("htmlwidgets", quietly = TRUE)) {
+          htmlwidgets::saveWidget(result, file, selfcontained = TRUE)
+        } else if (inherits(result, "ggplot")) {
+          if (fmt == "pdf") {
+            pdf_device <- if (capabilities("cairo")) cairo_pdf else grDevices::pdf
+            ggplot2::ggsave(file, plot = result, device = pdf_device, width = 10, height = 7)
+          } else if (fmt == "tiff") {
+            ggplot2::ggsave(file, plot = result, device = "tiff",
+                            width = 10, height = 7, dpi = 300, compression = "lzw")
+          } else if (fmt == "jpeg") {
+            ggplot2::ggsave(file, plot = result, device = "jpeg",
+                            width = 10, height = 7, dpi = 300, quality = 95)
+          } else {
+            ggplot2::ggsave(file, plot = result, device = fmt,
+                            width = 10, height = 7, dpi = if (fmt == "svg") 96 else 300)
+          }
+        } else if (inherits(result, "recordedplot")) {
+          if (fmt == "pdf") {
+            pdf(file, width = 10, height = 7)
+          } else if (fmt == "svg") {
+            svg(file, width = 10, height = 7)
+          } else if (fmt == "tiff") {
+            tiff(file, width = 10 * 300, height = 7 * 300, res = 300, compression = "lzw")
+          } else if (fmt == "jpeg") {
+            jpeg(file, width = 10 * 300, height = 7 * 300, res = 300, quality = 95)
+          } else {
+            png(file, width = 10 * 300, height = 7 * 300, res = 300)
+          }
+          replayPlot(result)
+          dev.off()
+        } else {
+          stop("No valid plot to save. Run code first to generate a chart.")
+        }
       }
-    },
-    content = function(file) {
-      result <- current_plot()
-      fmt <- input$export_format %||% "png"
+    )
+  }
 
-      if (inherits(result, "plotly") && requireNamespace("htmlwidgets", quietly = TRUE)) {
-        htmlwidgets::saveWidget(result, file, selfcontained = TRUE)
-      } else if (inherits(result, "ggplot")) {
-        if (fmt == "pdf") {
-          pdf_device <- if (capabilities("cairo")) cairo_pdf else grDevices::pdf
-          ggplot2::ggsave(file, plot = result, device = pdf_device, width = 10, height = 7)
-        } else {
-          ggplot2::ggsave(file, plot = result, device = fmt,
-                          width = 10, height = 7, dpi = if (fmt == "svg") 96 else 300)
-        }
-      } else if (inherits(result, "recordedplot")) {
-        if (fmt == "pdf") {
-          pdf(file, width = 10, height = 7)
-        } else if (fmt == "svg") {
-          svg(file, width = 10, height = 7)
-        } else {
-          png(file, width = 10 * 300, height = 7 * 300, res = 300)
-        }
-        replayPlot(result)
-        dev.off()
-      } else {
-        stop("No valid plot to save. Run code first to generate a chart.")
-      }
-    }
-  )
+  output$save_plot_png  <- make_save_handler("png")
+  output$save_plot_pdf  <- make_save_handler("pdf")
+  output$save_plot_svg  <- make_save_handler("svg")
+  output$save_plot_tiff <- make_save_handler("tiff")
+  output$save_plot_jpeg <- make_save_handler("jpeg")
+  outputOptions(output, "save_plot_png", suspendWhenHidden = FALSE)
+  outputOptions(output, "save_plot_pdf", suspendWhenHidden = FALSE)
+  outputOptions(output, "save_plot_svg", suspendWhenHidden = FALSE)
+  outputOptions(output, "save_plot_tiff", suspendWhenHidden = FALSE)
+  outputOptions(output, "save_plot_jpeg", suspendWhenHidden = FALSE)
 
   # Toggle between static ggplot and interactive plotly
   observeEvent(input$toggle_plotly, {

@@ -20,16 +20,14 @@ ai_r_assistant <- function() {
   # new environment, not the sealed package namespace.
   pkg_app <- system.file("shinyapp", package = "aiRAssistant")
   if (nzchar(pkg_app) && file.exists(file.path(pkg_app, "app.R"))) {
-    shiny::runApp(pkg_app, host = "127.0.0.1", port = 5050,
-                  launch.browser = TRUE)
+    shiny::runApp(pkg_app, host = "127.0.0.1", port = 5050)
     return(invisible(NULL))
   }
 
   # ── 2. Dev / source-checkout fallback: run from inst/shinyapp/ directly ─────
   dev_app <- "inst/shinyapp"
   if (dir.exists(dev_app) && file.exists(file.path(dev_app, "app.R"))) {
-    shiny::runApp(dev_app, host = "127.0.0.1", port = 5050,
-                  launch.browser = TRUE)
+    shiny::runApp(dev_app, host = "127.0.0.1", port = 5050)
     return(invisible(NULL))
   }
 

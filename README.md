@@ -21,10 +21,19 @@ An enterprise-grade Shiny application and RStudio add-in for AI-assisted R devel
 - Auto-fix on error: AI automatically suggests fixes when code fails
 - Code diff view to see what the AI changed
 - CSV/Excel data upload with interactive preview
-- Interactive Plotly toggle for any ggplot
-- Chart export at 300 DPI (PNG, PDF, SVG, HTML)
+- Fast always-on auto-plot while editing in Plot tab
+- Save dropdown export (PNG, PDF, SVG, TIFF, JPEG)
 - Persistent API key storage in Settings
 - Session save/load for chat history
+
+## Latest improvements (March 2026)
+
+- Fixed `Run Selection` so selected code in the editor executes reliably
+- Moved plot controls into the editor tab row for cleaner workflow
+- Improved plot resizing when dragging splitters and collapsing/expanding console
+- Removed Auto Plot checkbox from UI and made auto-plot always enabled by default
+- Replaced old save controls with a single Save dropdown (PNG/PDF/SVG/TIFF/JPEG)
+- Kept save handlers active while dropdown is hidden to ensure downloads always work
 
 ## Architecture
 
@@ -267,6 +276,38 @@ AI-R-Assistant/
 Contributions are welcome. Review:
 - `CONTRIBUTING.md`
 - `CODE_OF_CONDUCT.md`
+
+## Acknowledgements
+
+This app builds on excellent R community packages.
+
+Core runtime packages:
+- `shiny`
+- `shinyAce`
+- `httr`
+- `jsonlite`
+- `memoise`
+- `keyring`
+- `rintrojs`
+- `rstudioapi`
+- `ggplot2`
+
+Optional enhancement packages:
+- `plotly`
+- `viridis`
+- `patchwork`
+- `scales`
+- `corrplot`
+- `curl`
+- `htmlwidgets`
+- `DT`
+- `readxl`
+- `htmltools`
+- `styler`
+- `formatR`
+- `promises`
+- `digest`
+- `shinyBS`
 
 ## License
 
