@@ -55,8 +55,6 @@ Optional packages for enhanced functionality:
 
 ### Install from GitHub (recommended)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TQhCuQ13EuY?si=mJjYEO_sFG7S28je" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 ```r
 install.packages("devtools")
 devtools::install_github("DataConceptz/AI-R-Assistant")
@@ -69,10 +67,6 @@ aiRAssistant::ai_r_assistant()
 ```
 
 Or in RStudio: `Tools -> Addins -> Browse Addins -> AI R Assistant`
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BjuErQTLjm4?si=ct6ihpoWdj6PhIbo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
 
 ### Run from source (development)
 
@@ -160,8 +154,6 @@ If endpoint is not reachable, start Ollama service and retry.
 - Check `inst/rstudio/addins.dcf` exists in installed package
 
 ## Model configuration
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/u27eKQDkl0w?si=3ZZpAwXzNlGi3dZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Ollama (default)
 
